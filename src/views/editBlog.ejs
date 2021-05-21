@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>
+        <%=title%>
+    </title>
+    <meta name="generator" content="Bootply" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="/css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <header class="navbar navbar-bright navbar-fixed-top" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/" class="navbar-brand">Home</a>
+            </div>
+            <nav class="collapse navbar-collapse" role="navigation">
+                <ul class="nav navbar-nav">
+                    <%for(let i=0;i<nav.length;i++){%>
+                        <li>
+                            <a href="<%=nav[i].link%>">
+                                <%=nav[i].title%>
+                            </a>
+                        </li>
+                        <%}%>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div id="masthead">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h1>
+                        <%=title%>
+                            <p class="lead"></p>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="top-spacer"> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel">
+                    <div class="panel-body" style="margin: 15px;">
+                        <form name='new Blog' action="/blogs/save-edit/<%=blog.id%>" method="POST">
+                            <div class="form-group row">
+                                <div class="form-row ">
+                                    <div class="form-group col-md-6">
+                                        <label for="authorName" class="form-label col-lg-12">Author Name</label>
+                                        <input type="text" class="form-control col-lg-12" value="<%=blog.author%>"
+                                            name="blogauthor" id="blogauthor" required />
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="category" class="form-label col-lg-12">Blog Category</label>
+                                        <input type="text" class="form-control col-lg-12" value="<%=blog.category%>"
+                                            name="blogcategory" id="blogcategory" required />
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="title" class="form-label col-lg-12">Blog Title</label>
+                                    <input type="text" class="form-control col-lg-12" value="<%=blog.title%>"
+                                        name="blogtitle" id="blogtitle" required />
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="description" class="form-label col-lg-12">Blog Description</label>
+                                    <textarea class="form-control col-lg-12" rows="6" name="blogdescription"
+                                        id="blogdescription" minlength="10" required><%=blog.description%></textarea>
+                                </div>
+                                <div class="form-group row col-lg-12">
+                                    <div class="col-md-2">
+                                        <button type="submit" class="btn btn-primary">Save</button>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button class=" btn btn-danger"><a href="/blogs/<%=blog.id%>"><i class="fa fa-ban"
+                                                    aria-hidden="true"></i>
+                                                Cancel</a></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <ul class="list-inline">
+                        <li><i class="icon-facebook icon-2x"></i></li>
+                        <li><i class="icon-twitter icon-2x"></i></li>
+                        <li><i class="icon-google-plus icon-2x"></i></li>
+                        <li><i class="icon-pinterest icon-2x"></i></li>
+                    </ul>
+                </div>
+                <div class="col-sm-6">
+                    <p class="pull-right">Copyright by: Nagarro</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+</body>
+
+</html>
