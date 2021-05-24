@@ -6,7 +6,7 @@ function router(nav) {
     var blogs = [];
     blogRouter.route('/').get((req, res) => {
         (async function query() {
-            await connection.promise().query('SELECT * FROM blog').then(rows => {
+            await connection.promise().query('SELECT * FROM blog ORDER BY likes desc').then(rows => {
                 blogs = rows[0];
                 res.render(
                     'blogsListView',
@@ -49,8 +49,14 @@ function router(nav) {
     blogRouter.route('/edit-blog/:id').get(async (req, res) => {
         const { id } = req.params;
         try {
+            if(isNaN(id)){
+                res.redirect('/page-not-found');
+            }
             const result = await connection.promise().query('SELECT * FROM blog where id=' + id);
             const edit_blog = result[0];
+            if (typeof(edit_blog[0]) == "undefined") {
+                res.redirect('/page-not-found');
+            }
             if (!result) {
                 return res.status(404).send(e);
             }
@@ -108,7 +114,7 @@ function router(nav) {
                 if (err) {
                     res.status(404).render(err);
                 } else {
-                    res.redirect('/blogs/'+id);
+                    res.redirect('/blogs/' + id);
                 }
             });
         } catch (error) {
@@ -119,10 +125,13 @@ function router(nav) {
     blogRouter.route('/:id').get(async (req, res) => {
         const { id } = req.params;
         try {
+            if(isNaN(id)){
+                res.redirect('/page-not-found');
+            }
             const result = await connection.promise().query('SELECT * FROM blog where id=' + id);
             const blog = result[0];
-            if (!result) {
-                return res.status(404).send(e);
+            if (typeof(blog[0]) == "undefined") {
+                res.redirect('/page-not-found');
             }
             res.render(
                 'blogView',
@@ -137,6 +146,9 @@ function router(nav) {
             res.status(404).render(error);
         }
     });
+    blogRouter.get('/**', function (req, res) {
+        res.redirect('/page-not-found');
+    })
     return blogRouter;
 }
 module.exports = router;

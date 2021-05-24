@@ -10,6 +10,7 @@
     <meta name="generator" content="Bootply" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
 </head>
@@ -66,6 +67,27 @@
             <div class="col-md-12">
                 <div class="panel">
                     <div class="panel-body">
+                        <div class="row">
+                            <br>
+                            <div class="col-md-2 col-sm-3 text-center">
+                                <h3>
+                                    Rank
+                                </h3>
+                            </div>
+                            <div class="col-md-8 col-sm-6">
+                                <h3>
+                                    Blog Title
+                                </h3>
+                                <br>
+                            </div>
+                            <div class="col-md-2 col-sm-3 text-center">
+                                <h3>
+                                    <i class="fa fa-thumbs-up"></i>
+                                    Likes
+                                </h3>
+                            </div>
+                        </div>
+                        <hr>
                         <%for(let i=0;i<blogs.length;i++){%>
                             <div class="row">
                                 <br>
@@ -75,7 +97,7 @@
                                         <%=i+1%>
                                     </h3>
                                 </div>
-                                <div class="col-md-10 col-sm-9">
+                                <div class="col-md-8 col-sm-6">
                                     <h3>
                                         <%=blogs[i].title%>
                                     </h3>
@@ -92,7 +114,14 @@
                                         </div>
                                         <div class="col-xs-3"></div>
                                     </div>
-                                    <br><br>
+                                    <br>
+                                </div>
+                                <div class="col-md-2 col-sm-3 text-center">
+                                    <br>
+                                    <h3>
+                                        <i class="fa fa-thumbs-up"></i>
+                                        <%=blogs[i].likes%>
+                                    </h3>
                                 </div>
                             </div>
                             <hr>

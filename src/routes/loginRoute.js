@@ -9,10 +9,14 @@ function router(nav) {
             });
     });
     loginRouter.post('/auth', (req, res, next) => {
-        passport.authenticate('local', {
-            successRedirect: '/blogs',
-            failureRedirect: '/'
-        })(req, res, next)
+        const username=req.body.username;
+        const password=req.body.userpassword;
+        console.log(username+" "+password)
+        if(username=='garg' && password=='garg'){
+            res.redirect('/blogs');
+        }else{
+            res.redirect('/');
+        }
     });
     return loginRouter;
 }
